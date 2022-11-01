@@ -45,4 +45,19 @@ public class RegistroDAO {
         }
         return listaUsu;
     }
+    
+    public void modificarUsuario(Registro u){
+        try {
+            cn=ConexionBD.getConexion();
+            String sql ="Update usuario set nom_usu=?,ape_usu=?,contra_usu=?,telef_usu=? where id_usu=? ";
+            ps=cn.prepareStatement(sql);
+            ps.setString(1, u.getNombre());
+            ps.setString(2, u.getApellido());
+            ps.setString(3, u.getContraseña());
+            ps.setInt(4, u.getTelefono());
+            ps.setString(5, u.getUsuario());
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 }
