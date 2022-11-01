@@ -43,11 +43,11 @@
                           </Group>
                           <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtst" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtnomi" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
                               <Component id="txtdesc" alignment="0" min="-2" pref="324" max="-2" attributes="0"/>
                               <Component id="txtcate" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
-                              <Component id="txtcod" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtcod" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                              <Component id="txtst" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
