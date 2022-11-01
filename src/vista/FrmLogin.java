@@ -204,7 +204,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 resultado=1;
                 if(resultado==1){
                     //OBSERVACIÓN: ENLAZAR LA VENTANA DEL MENÚ PRINCIPAL, ESTO ES PARA PROBAR EL FUNCIONAMIENTO
-                    FrmProductos frame = new FrmProductos();
+                    FrmProductos frame = new FrmProductos(rs);
                     frame.setVisible(true);
                     this.dispose();
                 }else{

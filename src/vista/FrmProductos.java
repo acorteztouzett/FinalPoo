@@ -1,19 +1,29 @@
 
 package vista;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import modelo.entidad.Inventario;
 import modelo.dao.InventarioDAO;
 import java.util.ArrayList;
-public class FrmProductos extends javax.swing.JFrame {
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+public class FrmProductos extends javax.swing.JFrame {
+    ResultSet rs;
     String nom, descripcion, categoria;
     int codigo,stock;
     InventarioDAO daoi;
     
     public FrmProductos() {
         initComponents();
+        
+    }
+    public FrmProductos(ResultSet rs) throws SQLException{
+        initComponents();
         daoi= new InventarioDAO();
-        iniciotxt.setText("Bienvenido ");
+        iniciotxt.setText("Bienvenido "+rs.getString("usuario"));
+        this.rs=rs;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -134,6 +144,7 @@ public class FrmProductos extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Categoría:");
 
+        iniciotxt.setFont(new java.awt.Font(".SF NS Text", 1, 18)); // NOI18N
         iniciotxt.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -172,7 +183,7 @@ public class FrmProductos extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(iniciotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(iniciotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -217,7 +228,11 @@ public class FrmProductos extends javax.swing.JFrame {
     }
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         capturarDatos();
-        daoi.registrarInventario(new Inventario(nom, descripcion, categoria, codigo, stock));
+        try {
+            daoi.registrarInventario(new Inventario(nom, descripcion, categoria, codigo, stock,rs.getInt("id_usu")));
+        } catch (SQLException ex) {
+            System.err.println("Error en el acceso: "+ex.getMessage());
+        }
         limpiar();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

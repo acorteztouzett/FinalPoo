@@ -23,7 +23,7 @@ public class InventarioDAO {
             ps.setString(3, i.getDescripcion());
             ps.setString(4, i.getCategoria());
             ps.setInt(5, i.getStock());
-            ps.setInt(6, 12);
+            ps.setInt(6, i.getId_usuario());
             ps.execute();
         } catch (Exception e) {
             System.err.println("ERROR: "+e.getMessage());

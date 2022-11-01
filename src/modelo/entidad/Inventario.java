@@ -4,17 +4,18 @@ package modelo.entidad;
 
 public class Inventario {
     private String nom, descripcion, categoria;
-    private int codigo,stock;
+    private int codigo,stock,id_usuario;
 
     public Inventario() {
     }
 
-    public Inventario(String nom, String descripcion, String categoria,int codigo, int stock) {
+    public Inventario(String nom, String descripcion, String categoria,int codigo, int stock,int id_usuario) {
         this.nom = nom;
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.codigo= codigo;
         this.stock = stock;
+        this.id_usuario=id_usuario;
     }
 
     public String getNom() {
@@ -57,5 +58,13 @@ public class Inventario {
         this.stock = stock;
     }
 
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+    
     
 }
