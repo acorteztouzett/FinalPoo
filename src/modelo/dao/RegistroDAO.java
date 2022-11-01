@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
+import java.util.Random;
 
 public class RegistroDAO {
     Connection cn;
@@ -13,16 +14,20 @@ public class RegistroDAO {
     
     public void registrarUsuario(Registro u){
         try {
+            Random r = new Random();
+            int result = r.nextInt(1000-1) + 1;
             cn=ConexionBD.getConexion();
-            String sql ="insert into usuario value(?,?,?,?,?)";
+            String sql ="insert into usuario values(?,?,?,?,?,?)";
             ps=cn.prepareStatement(sql);
-            ps.setString(1, u.getUsuario());
+            ps.setInt(1, result);
             ps.setString(2, u.getNombre());
             ps.setString(3, u.getApellido());
             ps.setString(4, u.getContraseña());
             ps.setInt(5, u.getTelefono());
+            ps.setString(6, u.getUsuario());
             ps.execute();
         } catch (Exception e) {
+            System.err.println("ERROR: "+e.getMessage());
         }
     }
     
@@ -42,6 +47,7 @@ public class RegistroDAO {
                 listaUsu.add(u);
             }
         } catch (Exception e) {
+            
         }
         return listaUsu;
     }

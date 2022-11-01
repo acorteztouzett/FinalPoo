@@ -16,15 +16,17 @@ public class InventarioDAO {
      public void registrarInventario(Inventario i){
         try {
             cn=ConexionBD.getConexion();
-            String sql ="insert into inventario value(?,?,?,?,?)";
+            String sql ="insert into inventario values(?,?,?,?,?,?)";
             ps=cn.prepareStatement(sql);
             ps.setInt(1, i.getCodigo());
             ps.setString(2, i.getNom());
             ps.setString(3, i.getDescripcion());
             ps.setString(4, i.getCategoria());
             ps.setInt(5, i.getStock());
+            ps.setInt(6, 12);
             ps.execute();
         } catch (Exception e) {
+            System.err.println("ERROR: "+e.getMessage());
         }
     }
     

@@ -194,7 +194,7 @@ public class FrmLogin extends javax.swing.JFrame {
             String usuario = txt_usuario.getText();
             String contraseña = String.valueOf(txt_contraseña.getPassword());
             
-            String sql = "select * from usuario where id_usu='"+usuario+"' and contra_usu='"+contraseña+"' ";
+            String sql = "select * from usuario where usuario='"+usuario+"' and contra_usu='"+contraseña+"' ";
             
             cn=ConexionBD.getConexion();
             ps=cn.prepareStatement(sql);
@@ -204,7 +204,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 resultado=1;
                 if(resultado==1){
                     //OBSERVACIÓN: ENLAZAR LA VENTANA DEL MENÚ PRINCIPAL, ESTO ES PARA PROBAR EL FUNCIONAMIENTO
-                    FrmRegistro frame = new FrmRegistro();
+                    FrmProductos frame = new FrmProductos();
                     frame.setVisible(true);
                     this.dispose();
                 }else{
