@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Random;
 import modelo.entidad.Inventario;
 import util.ConexionBD;
 
@@ -16,9 +17,11 @@ public class InventarioDAO {
      public void registrarInventario(Inventario i){
         try {
             cn=ConexionBD.getConexion();
+            Random r = new Random();
+            int result = r.nextInt(1000000-100) + 100;
             String sql ="insert into inventario values(?,?,?,?,?,?)";
             ps=cn.prepareStatement(sql);
-            ps.setInt(1, i.getCodigo());
+            ps.setInt(1, result);
             ps.setString(2, i.getNom());
             ps.setString(3, i.getDescripcion());
             ps.setString(4, i.getCategoria());

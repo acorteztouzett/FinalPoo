@@ -274,15 +274,9 @@
     <Component class="javax.swing.JLabel" name="iniciotxt">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-<<<<<<< HEAD
           <Font name=".SF NS Text" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
-=======
-          <Font name="Arial" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="BIENVENIDO!"/>
->>>>>>> 57c0b474f34d38511705cca0f63c1f1d0094c33b
       </Properties>
     </Component>
   </SubComponents>

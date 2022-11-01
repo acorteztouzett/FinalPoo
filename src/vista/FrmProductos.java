@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import modelo.entidad.Inventario;
 import modelo.dao.InventarioDAO;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class FrmProductos extends javax.swing.JFrame {
     ResultSet rs;
@@ -144,13 +142,8 @@ public class FrmProductos extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Categoría:");
 
-<<<<<<< HEAD
         iniciotxt.setFont(new java.awt.Font(".SF NS Text", 1, 18)); // NOI18N
         iniciotxt.setText("jLabel1");
-=======
-        iniciotxt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        iniciotxt.setText("BIENVENIDO!");
->>>>>>> 57c0b474f34d38511705cca0f63c1f1d0094c33b
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
