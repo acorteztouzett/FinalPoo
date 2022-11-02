@@ -52,10 +52,10 @@ public class RegistroDAO {
         return listaUsu;
     }
     
-    public void modificarUsuario(Registro u){
+    public void modificarUsuario(Registro u,int id_usu){
         try {
             cn=ConexionBD.getConexion();
-            String sql ="Update usuario set nom_usu=?,ape_usu=?,contra_usu=?,telef_usu=? where id_usu=? ";
+            String sql ="Update usuario set nom_usu=?,ape_usu=?,contra_usu=?,telef_usu=?,usuario=? where id_usu="+id_usu;
             ps=cn.prepareStatement(sql);
             ps.setString(1, u.getNombre());
             ps.setString(2, u.getApellido());

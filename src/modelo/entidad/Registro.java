@@ -7,7 +7,7 @@ public class Registro {
     public Registro() {
     }
     
-    public Registro(String nombre, String apellido, String usuario, String contraseña, int telefono) {
+    public Registro(String nombre, String apellido, String contraseña, int telefono,String usuario) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.usuario = usuario;

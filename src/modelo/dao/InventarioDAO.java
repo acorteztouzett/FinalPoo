@@ -33,11 +33,11 @@ public class InventarioDAO {
         }
     }
     
-    public ArrayList<Inventario> getProductos(){
+    public ArrayList<Inventario> getProductos(int id_usu){
         ArrayList<Inventario> listaInv = new ArrayList<>();
         try {
             cn=ConexionBD.getConexion();
-            ps=cn.prepareStatement("select * from inventario");
+            ps=cn.prepareStatement("select * from inventario where id_usu="+id_usu);
             rs=ps.executeQuery();
             while(rs.next()){
                 Inventario i = new Inventario();
@@ -51,5 +51,19 @@ public class InventarioDAO {
         } catch (Exception e) {
         }
         return listaInv;
+    }
+    public void modificarUsuario(Inventario u,int id_usu){
+        try {
+            cn=ConexionBD.getConexion();
+            String sql ="Update inventario set nom_prod=?,descripcion=?,categoria=?,stock=? where id_usu="+id_usu;
+            ps=cn.prepareStatement(sql);
+            ps.setString(1, u.getNom());
+            ps.setString(2, u.getDescripcion());
+            ps.setString(3, u.getCategoria());
+            ps.setInt(4, u.getStock());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.err.println("ERROR: "+e.getMessage());
+        }
     }
 }

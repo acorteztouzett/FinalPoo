@@ -171,7 +171,7 @@ public class FrmRegistro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Algún campo está vacío!!");
         }else{
             capturarDatos();
-            daor.registrarUsuario(new Registro(nombre, apellido, usuario, contraseña, telefono));
+            daor.registrarUsuario(new Registro(nombre, apellido, contraseña, telefono, usuario));
             limpiar();
             JOptionPane.showMessageDialog(null, "¡BIENVENIDO!\nNueva cuenta registrada correctamente!");
             FrmLogin frame = new FrmLogin();

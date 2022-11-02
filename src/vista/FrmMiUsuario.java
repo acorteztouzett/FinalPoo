@@ -2,6 +2,9 @@ package vista;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.dao.RegistroDAO;
 import modelo.entidad.Registro;
@@ -21,6 +24,17 @@ public class FrmMiUsuario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         daor=new RegistroDAO();
     }
+    public FrmMiUsuario(ResultSet rs) throws SQLException{
+        initComponents();
+        daor=new RegistroDAO();
+        this.rs=rs;
+        usuarioTxt.setText(rs.getString("usuario"));
+        txt_usuario.setText(rs.getString("usuario"));
+        txt_nombre.setText(rs.getString("nom_usu"));
+        txt_apellido.setText(rs.getString("ape_usu"));
+        txt_contraseña.setText(rs.getString("contra_usu"));
+        txt_telefono.setText(rs.getString("telef_usu"));
+    }
     
     public void capturarDatos(){
         usuario=txt_usuario.getText();
@@ -35,11 +49,10 @@ public class FrmMiUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        usuarioTxt = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btn_buscarUsu = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -59,8 +72,8 @@ public class FrmMiUsuario extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Ingresa tu Usuario y dale");
+        usuarioTxt.setForeground(new java.awt.Color(255, 255, 255));
+        usuarioTxt.setText("Usuario");
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -72,15 +85,6 @@ public class FrmMiUsuario extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Apellido:");
-
-        btn_buscarUsu.setBackground(new java.awt.Color(204, 153, 255));
-        btn_buscarUsu.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_buscarUsu.setText("BUSCAR");
-        btn_buscarUsu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_buscarUsuActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,12 +145,10 @@ public class FrmMiUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_buscarUsu)))
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(usuarioTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(jLabel1)))
@@ -209,7 +211,7 @@ public class FrmMiUsuario extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel5)
+                                .addComponent(usuarioTxt)
                                 .addComponent(jLabel6))
                             .addComponent(txt_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -220,10 +222,7 @@ public class FrmMiUsuario extends javax.swing.JFrame {
                                     .addComponent(jLabel8))
                                 .addGap(18, 18, 18)
                                 .addComponent(btn_modificarUsu))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(btn_buscarUsu))))
+                            .addComponent(jLabel9)))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
@@ -233,14 +232,14 @@ public class FrmMiUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_buscarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarUsuActionPerformed
-        buscarUsuario();
-    }//GEN-LAST:event_btn_buscarUsuActionPerformed
-
     private void btn_modificarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarUsuActionPerformed
-        capturarDatos();
-        daor.modificarUsuario(new Registro(nombre, apellido, usuario, contraseña, telefono));
-        limpiar();
+        try {
+            capturarDatos();
+            daor.modificarUsuario(new Registro(nombre, apellido, contraseña, telefono, usuario),rs.getInt("id_usu"));
+            limpiar();
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmMiUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_modificarUsuActionPerformed
 
     private void limpiar(){
@@ -254,9 +253,8 @@ public class FrmMiUsuario extends javax.swing.JFrame {
     
     public void buscarUsuario(){
         try {
-            String usuario = txt_usuario.getText();
             cn=ConexionBD.getConexion();
-            String sql ="select * from usuario where id_usu='"+usuario+"' ";
+            String sql ="update * from usuario where id_usu="+rs.getInt("id_usu");
             ps=cn.prepareStatement(sql);
             rs=ps.executeQuery();
             
@@ -311,26 +309,23 @@ public class FrmMiUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_buscarUsu;
     private javax.swing.JButton btn_modificarUsu;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTextField txt_apellido;
     private javax.swing.JPasswordField txt_contraseña;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_telefono;
     private javax.swing.JTextField txt_usuario;
+    private javax.swing.JLabel usuarioTxt;
     // End of variables declaration//GEN-END:variables
 }

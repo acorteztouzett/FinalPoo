@@ -9,11 +9,10 @@ public class Inventario {
     public Inventario() {
     }
 
-    public Inventario(String nom, String descripcion, String categoria,int codigo, int stock,int id_usuario) {
+    public Inventario(String nom, String descripcion, String categoria, int stock,int id_usuario) {
         this.nom = nom;
         this.descripcion = descripcion;
         this.categoria = categoria;
-        this.codigo= codigo;
         this.stock = stock;
         this.id_usuario=id_usuario;
     }
