@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class FrmLogin extends javax.swing.JFrame {
-    
+
     Connection cn;
     PreparedStatement ps;
     ResultSet rs;
@@ -14,6 +14,9 @@ public class FrmLogin extends javax.swing.JFrame {
     public FrmLogin() {
         initComponents();
         this.setLocationRelativeTo(null);
+        btn_salir.setToolTipText("Salir");
+        btn_iniciarSesion.setToolTipText("Inicia Sesión");
+        btn_crearCuenta.setToolTipText("Crea una cuenta nueva");
     }
 
     @SuppressWarnings("unchecked")
@@ -33,13 +36,10 @@ public class FrmLogin extends javax.swing.JFrame {
         txt_contraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(600, 400));
-        setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setPreferredSize(new java.awt.Dimension(600, 320));
+        jPanel1.setPreferredSize(new java.awt.Dimension(630, 350));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -69,7 +69,7 @@ public class FrmLogin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 401, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 431, Short.MAX_VALUE)
                 .addComponent(btn_salir)
                 .addGap(30, 30, 30))
         );
@@ -136,7 +136,7 @@ public class FrmLogin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(633, 633, 633))
+                .addGap(603, 603, 603))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,23 +152,31 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addComponent(txt_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jcbox_mostrarContra)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_iniciarSesion)
                     .addComponent(btn_crearCuenta))
                 .addGap(69, 69, 69))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 318));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btn_salirActionPerformed
+
+    private void btn_iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarSesionActionPerformed
+        validaAcceso();
+    }//GEN-LAST:event_btn_iniciarSesionActionPerformed
+
     private void btn_crearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearCuentaActionPerformed
         JOptionPane.showMessageDialog(null, "¡INFORMACIÓN!\n¿Quieres crear una cuenta nueva?");
-               FrmRegistro frame = new FrmRegistro();
-               frame.setVisible(true);//Llamar a la clase si se cumple el condicional
-               this.dispose();//Eliminar al frame y dejar al frame siguiente enlazado
+        FrmRegistro frame = new FrmRegistro();
+        frame.setVisible(true);//Llamar a la clase si se cumple el condicional
+        this.dispose();//Eliminar al frame y dejar al frame siguiente enlazado
     }//GEN-LAST:event_btn_crearCuentaActionPerformed
 
     private void jcbox_mostrarContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbox_mostrarContraActionPerformed
@@ -179,14 +187,6 @@ public class FrmLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jcbox_mostrarContraActionPerformed
 
-    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btn_salirActionPerformed
-
-    private void btn_iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarSesionActionPerformed
-        validaAcceso();
-    }//GEN-LAST:event_btn_iniciarSesionActionPerformed
-    
     public void validaAcceso(){
         int resultado=0;
         
@@ -216,9 +216,6 @@ public class FrmLogin extends javax.swing.JFrame {
         }
     }
     
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -241,6 +238,7 @@ public class FrmLogin extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

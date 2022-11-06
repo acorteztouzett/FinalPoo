@@ -22,10 +22,12 @@ public class FrmMiUsuario extends javax.swing.JFrame {
     public FrmMiUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
-        daor=new RegistroDAO();
     }
     public FrmMiUsuario(ResultSet rs) throws SQLException{
         initComponents();
+        this.setLocationRelativeTo(null);
+        btn_modificarUsu.setToolTipText("Modificar los cambios realizados");
+        btn_volver.setToolTipText("Regresa a la ventana anterior");
         daor=new RegistroDAO();
         this.rs=rs;
         usuarioTxt.setText(rs.getString("usuario"));
@@ -55,6 +57,7 @@ public class FrmMiUsuario extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
+        btn_volver = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -93,6 +96,14 @@ public class FrmMiUsuario extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("MyStock+");
 
+        btn_volver.setBackground(new java.awt.Color(204, 204, 204));
+        btn_volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icon_volver.png"))); // NOI18N
+        btn_volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_volverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -100,14 +111,20 @@ public class FrmMiUsuario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_volver)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_volver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -231,6 +248,12 @@ public class FrmMiUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_modificarUsuActionPerformed
 
+    private void btn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_volverActionPerformed
+        FrmProductos frame = new FrmProductos();
+        frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_volverActionPerformed
+
     private void limpiar(){
          txt_nombre.setText("");
          txt_apellido.setText("");
@@ -240,7 +263,7 @@ public class FrmMiUsuario extends javax.swing.JFrame {
          txt_nombre.requestFocus();
     }
     
-    public void buscarUsuario(){
+    /*public void buscarUsuario(){
         try {
             cn=ConexionBD.getConexion();
             String sql ="update * from usuario where id_usu="+rs.getInt("id_usu");
@@ -259,8 +282,7 @@ public class FrmMiUsuario extends javax.swing.JFrame {
         } catch (Exception e) {
             System.err.println(e);
         }
-        
-    }
+    }*/
     
     /**
      * @param args the command line arguments
@@ -299,6 +321,7 @@ public class FrmMiUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_modificarUsu;
+    private javax.swing.JButton btn_volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
