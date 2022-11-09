@@ -10,12 +10,14 @@ import modelo.dao.InventarioDAO;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import util.ConexionBD;
 
 public class FrmProductos extends javax.swing.JFrame {
     ResultSet rs;
-    String nom, descripcion, categoria;
+    String nom, descripcion, categoria, tienda;
     int codigo,stock;
     InventarioDAO daoi;
     Connection cn;
@@ -37,6 +39,12 @@ public class FrmProductos extends javax.swing.JFrame {
         btnBuscar.setToolTipText("Buscar producto");
         btnListar.setToolTipText("Listar todos los productos");
         btnEliminar.setToolTipText("Eliminar producto");
+        for (int i = 0; i < 5; i++) {
+            DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
+            cellRenderer.setHorizontalAlignment(JLabel.CENTER);
+            tbSalida.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
+        }
+        mostrar();
     }
 
     @SuppressWarnings("unchecked")
@@ -52,17 +60,20 @@ public class FrmProductos extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnPerfil = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         txtcate = new javax.swing.JTextField();
-        txtst = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txaRes = new javax.swing.JTextArea();
         jlabel3 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtnomi = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         iniciotxt = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbSalida = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtst = new javax.swing.JTextField();
+        txtTien = new javax.swing.JTextField();
+        txtcate1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -143,11 +154,11 @@ public class FrmProductos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnModificar)
-                        .addComponent(btnListar)
-                        .addComponent(btnBuscar)
-                        .addComponent(btnEliminar)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnListar, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel5Layout.createSequentialGroup()
                             .addGap(11, 11, 11)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -155,19 +166,7 @@ public class FrmProductos extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 80));
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 255, 255));
-        jLabel5.setText("Stock:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 257, -1, -1));
         getContentPane().add(txtcate, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 217, 155, -1));
-        getContentPane().add(txtst, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 258, 88, -1));
-
-        txaRes.setColumns(20);
-        txaRes.setRows(5);
-        jScrollPane2.setViewportView(txaRes);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 298, 850, 254));
 
         jlabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jlabel3.setForeground(new java.awt.Color(204, 255, 255));
@@ -181,10 +180,13 @@ public class FrmProductos extends javax.swing.JFrame {
         getContentPane().add(txtnomi, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 141, 136, -1));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setLayout(null);
 
         iniciotxt.setFont(new java.awt.Font(".SF NS Text", 3, 18)); // NOI18N
         iniciotxt.setForeground(new java.awt.Color(204, 0, 255));
         iniciotxt.setText("jLabel1");
+        jPanel1.add(iniciotxt);
+        iniciotxt.setBounds(53, 47, 287, 33);
 
         btnRegistrar.setBackground(new java.awt.Color(51, 51, 51));
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icon_registrar.png"))); // NOI18N
@@ -193,31 +195,42 @@ public class FrmProductos extends javax.swing.JFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnRegistrar);
+        btnRegistrar.setBounds(752, 98, 66, 66);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(iniciotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(620, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRegistrar)
-                .addGap(142, 142, 142))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(iniciotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnRegistrar)
-                .addContainerGap(356, Short.MAX_VALUE))
-        );
+        tbSalida.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Descripción", "Categoría", "Tienda", "Stock"
+            }
+        ));
+        jScrollPane1.setViewportView(tbSalida);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(40, 270, 800, 234);
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setText("Tienda:");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(87, 198, 94, 22);
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel5.setText("Stock:");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(87, 239, 56, 22);
+        jPanel1.add(txtst);
+        txtst.setBounds(302, 240, 88, 22);
+        jPanel1.add(txtTien);
+        txtTien.setBounds(300, 200, 155, 22);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 960, 520));
+        getContentPane().add(txtcate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 217, 155, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -225,12 +238,13 @@ public class FrmProductos extends javax.swing.JFrame {
         nom=txtnomi.getText();
         descripcion=txtdesc.getText();
         categoria=txtcate.getText();
+        tienda=txtTien.getText();
         stock=Integer.parseInt(txtst.getText());
     }
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         capturarDatos();
         try {
-            daoi.registrarInventario(new Inventario(nom, descripcion, categoria, stock,rs.getInt("id_usu")));
+            daoi.registrarInventario(new Inventario(nom, descripcion, categoria, tienda, stock,rs.getInt("id_usu")));
         } catch (SQLException ex) {
             System.err.println("Error en el acceso: "+ex.getMessage());
         }
@@ -240,7 +254,7 @@ public class FrmProductos extends javax.swing.JFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         try {
             capturarDatos();
-            daoi.modificarUsuario(new Inventario(nom,descripcion,categoria,stock,rs.getInt("id_usu")),rs.getInt("id_usu"));
+            daoi.modificarProducto(new Inventario(nom,descripcion,categoria, tienda, stock,rs.getInt("id_usu")),rs.getInt("id_usu"),rs.getString("nom_prod"));
             limpiar();
         } catch (SQLException ex) {
             Logger.getLogger(FrmProductos.class.getName()).log(Level.SEVERE, null, ex);
@@ -256,9 +270,14 @@ public class FrmProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListarActionPerformed
     public void mostrar() throws SQLException{
         ArrayList<Inventario> listai=daoi.getProductos(rs.getInt("id_usu"));
-        txaRes.setText("Código: Nombre: Descripción: Categoria: Stock: \n");
+        int x=0;
         for(Inventario i:listai){
-            txaRes.append(i.getCodigo() + "\t" + i.getNom()+ "\t" + i.getDescripcion() + "\t" + i.getCategoria() + "\t" + i.getStock() + "\n");
+            tbSalida.getModel().setValueAt(i.getNom(),x,0);
+            tbSalida.getModel().setValueAt(i.getDescripcion(),x,1);
+            tbSalida.getModel().setValueAt(i.getCategoria(),x,2);
+            tbSalida.getModel().setValueAt(i.getTienda(),x,3);
+            tbSalida.getModel().setValueAt(i.getStock(),x,4);
+            x=x+1;
         }
     }
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -297,6 +316,8 @@ public class FrmProductos extends javax.swing.JFrame {
                 txtdesc.setText(rs.getString("descripcion"));
                 txtcate.setText(rs.getString("categoria"));
                 txtst.setText(rs.getString("stock"));
+                txtTien.setText(rs.getString("tienda"));
+                
             }else{
                 JOptionPane.showMessageDialog(null, "Producto inválido!!!\nInténtelo de nuevo.");
             }
@@ -307,6 +328,7 @@ public class FrmProductos extends javax.swing.JFrame {
     private void limpiar(){
         txtnomi.setText("");
         txtdesc.setText("");
+        txtTien.setText("");
         txtcate.setText("");
         txtst.setText("");
     }
@@ -354,16 +376,19 @@ public class FrmProductos extends javax.swing.JFrame {
     private javax.swing.JButton btnPerfil;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel iniciotxt;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlabel3;
-    private javax.swing.JTextArea txaRes;
+    private javax.swing.JTable tbSalida;
+    private javax.swing.JTextField txtTien;
     private javax.swing.JTextField txtcate;
+    private javax.swing.JTextField txtcate1;
     private javax.swing.JTextField txtdesc;
     private javax.swing.JTextField txtnomi;
     private javax.swing.JTextField txtst;
