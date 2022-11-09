@@ -249,9 +249,13 @@ public class FrmMiUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_modificarUsuActionPerformed
 
     private void btn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_volverActionPerformed
-        FrmProductos frame = new FrmProductos();
-        frame.setVisible(true);
-        this.dispose();
+       try {
+            FrmProductos frame = new FrmProductos(rs);
+            frame.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmMiUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_volverActionPerformed
 
     private void limpiar(){
