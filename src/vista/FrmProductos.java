@@ -74,6 +74,7 @@ public class FrmProductos extends javax.swing.JFrame {
         txtnomi = new javax.swing.JTextField();
         txtdesc = new javax.swing.JTextField();
         txtcate = new javax.swing.JTextField();
+        jCbx_Categoria = new javax.swing.JComboBox<>();
         txtcate1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -251,8 +252,14 @@ public class FrmProductos extends javax.swing.JFrame {
         txtnomi.setBounds(290, 80, 190, 30);
         jPanel1.add(txtdesc);
         txtdesc.setBounds(290, 120, 324, 30);
+
+        txtcate.setEnabled(false);
         jPanel1.add(txtcate);
         txtcate.setBounds(290, 160, 210, 30);
+
+        jCbx_Categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abarrotes", "Licores", "Golosinas", "Gaseosas", "Verduras", "Frutas", "Enlatados", "Embutidos", "Farmaceúticos", "Utiles escolares", "Panes" }));
+        jPanel1.add(jCbx_Categoria);
+        jCbx_Categoria.setBounds(540, 160, 170, 30);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 960, 520));
         getContentPane().add(txtcate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 217, 155, -1));
@@ -262,7 +269,7 @@ public class FrmProductos extends javax.swing.JFrame {
      public void capturarDatos(){
         nom=txtnomi.getText();
         descripcion=txtdesc.getText();
-        categoria=txtcate.getText();
+        categoria=jCbx_Categoria.getSelectedItem().toString();
         tienda=txtTien.getText();
         stock=Integer.parseInt(txtst.getText());
     }
@@ -281,6 +288,7 @@ public class FrmProductos extends javax.swing.JFrame {
         try {
             capturarDatos();
             daoi.modificarProducto(new Inventario(nom,descripcion,categoria, tienda, stock,rs.getInt("id_usu")),rs.getInt("id_usu"),rs.getString("nom_prod"));
+            JOptionPane.showMessageDialog(null, "Producto modificado correctamente.\nListar para actualizar inventario.");
             limpiar();
         } catch (SQLException ex) {
             Logger.getLogger(FrmProductos.class.getName()).log(Level.SEVERE, null, ex);
@@ -314,6 +322,7 @@ public class FrmProductos extends javax.swing.JFrame {
             ps=cn.prepareStatement(sql);
             ps.executeUpdate();
             limpiar();
+            JOptionPane.showMessageDialog(null, "Producto eliminado correctamente.\nListar para actualizar inventario.");
         } catch (SQLException ex) {
             Logger.getLogger(FrmProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -406,6 +415,7 @@ public class FrmProductos extends javax.swing.JFrame {
     private javax.swing.JButton btnPerfil;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel iniciotxt;
+    private javax.swing.JComboBox<String> jCbx_Categoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
