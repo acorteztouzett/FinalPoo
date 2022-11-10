@@ -68,4 +68,5 @@ public ArrayList<Inventario> getProductos(int id_usu){
             System.err.println("ERROR: "+e.getMessage());
         }
     }
+    
 }

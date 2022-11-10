@@ -203,7 +203,15 @@ public class FrmProductos extends javax.swing.JFrame {
             new String [] {
                 "Nombre", "Descripción", "Categoría", "Tienda", "Stock"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tbSalida);
 
         jPanel1.add(jScrollPane1);
@@ -315,12 +323,14 @@ public class FrmProductos extends javax.swing.JFrame {
         }
     }
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
         try {
             String nombre=txtnomi.getText();
             cn=ConexionBD.getConexion();
             String sql ="delete from inventario where id_usu="+rs.getInt("id_usu")+" and nom_prod='"+nombre+"'";
             ps=cn.prepareStatement(sql);
-            ps.executeUpdate();
+            ps.execute();
+            ps.close();
             limpiar();
             JOptionPane.showMessageDialog(null, "Producto eliminado correctamente.\nListar para actualizar inventario.");
         } catch (SQLException ex) {
