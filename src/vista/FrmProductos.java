@@ -39,6 +39,7 @@ public class FrmProductos extends javax.swing.JFrame {
         btnBuscar.setToolTipText("Buscar producto");
         btnListar.setToolTipText("Listar todos los productos");
         btnEliminar.setToolTipText("Eliminar producto");
+        
         for (int i = 0; i < 5; i++) {
             DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
             cellRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -51,8 +52,6 @@ public class FrmProductos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtdesc = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         btnModificar = new javax.swing.JButton();
@@ -60,10 +59,6 @@ public class FrmProductos extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnPerfil = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        txtcate = new javax.swing.JTextField();
-        jlabel3 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtnomi = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         iniciotxt = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
@@ -73,16 +68,16 @@ public class FrmProductos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtst = new javax.swing.JTextField();
         txtTien = new javax.swing.JTextField();
+        jlabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtnomi = new javax.swing.JTextField();
+        txtdesc = new javax.swing.JTextField();
+        txtcate = new javax.swing.JTextField();
         txtcate1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(txtdesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 182, 324, -1));
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 255, 255));
-        jLabel4.setText("Descripción:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 181, -1, -1));
 
         jPanel5.setBackground(new java.awt.Color(0, 102, 0));
 
@@ -166,18 +161,6 @@ public class FrmProductos extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 80));
-        getContentPane().add(txtcate, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 217, 155, -1));
-
-        jlabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jlabel3.setForeground(new java.awt.Color(204, 255, 255));
-        jlabel3.setText("Nombre:");
-        getContentPane().add(jlabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 140, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 255, 255));
-        jLabel3.setText("Categoría:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 216, -1, -1));
-        getContentPane().add(txtnomi, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 141, 136, -1));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(null);
@@ -186,7 +169,7 @@ public class FrmProductos extends javax.swing.JFrame {
         iniciotxt.setForeground(new java.awt.Color(204, 0, 255));
         iniciotxt.setText("jLabel1");
         jPanel1.add(iniciotxt);
-        iniciotxt.setBounds(53, 47, 287, 33);
+        iniciotxt.setBounds(40, 40, 287, 33);
 
         btnRegistrar.setBackground(new java.awt.Color(51, 51, 51));
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icon_registrar.png"))); // NOI18N
@@ -203,6 +186,17 @@ public class FrmProductos extends javax.swing.JFrame {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
@@ -212,22 +206,53 @@ public class FrmProductos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbSalida);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(40, 270, 800, 234);
+        jScrollPane1.setBounds(30, 280, 880, 234);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 255, 255));
         jLabel1.setText("Tienda:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(87, 198, 94, 22);
+        jLabel1.setBounds(210, 200, 70, 22);
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 255, 255));
         jLabel5.setText("Stock:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(87, 239, 56, 22);
+        jLabel5.setBounds(220, 240, 56, 22);
         jPanel1.add(txtst);
-        txtst.setBounds(302, 240, 88, 22);
+        txtst.setBounds(290, 240, 120, 30);
+
+        txtTien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTienActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtTien);
-        txtTien.setBounds(300, 200, 155, 22);
+        txtTien.setBounds(290, 200, 180, 30);
+
+        jlabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlabel3.setForeground(new java.awt.Color(204, 255, 255));
+        jlabel3.setText("Nombre:");
+        jPanel1.add(jlabel3);
+        jlabel3.setBounds(200, 80, 77, 22);
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel4.setText("Descripción:");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(170, 120, 111, 22);
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel3.setText("Categoría:");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(190, 160, 91, 22);
+        jPanel1.add(txtnomi);
+        txtnomi.setBounds(290, 80, 190, 30);
+        jPanel1.add(txtdesc);
+        txtdesc.setBounds(290, 120, 324, 30);
+        jPanel1.add(txtcate);
+        txtcate.setBounds(290, 160, 210, 30);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 960, 520));
         getContentPane().add(txtcate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 217, 155, -1));
@@ -245,6 +270,7 @@ public class FrmProductos extends javax.swing.JFrame {
         capturarDatos();
         try {
             daoi.registrarInventario(new Inventario(nom, descripcion, categoria, tienda, stock,rs.getInt("id_usu")));
+            JOptionPane.showMessageDialog(null, "Producto registrado correctamente.\nListar para actualizar inventario.");
         } catch (SQLException ex) {
             System.err.println("Error en el acceso: "+ex.getMessage());
         }
@@ -325,6 +351,10 @@ public class FrmProductos extends javax.swing.JFrame {
             System.err.println(e);
         } 
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTienActionPerformed
     private void limpiar(){
         txtnomi.setText("");
         txtdesc.setText("");

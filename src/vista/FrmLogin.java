@@ -1,4 +1,5 @@
 package vista;
+
 import javax.swing.JOptionPane;
 import util.ConexionBD;
 import java.sql.Connection;
@@ -192,9 +193,9 @@ public class FrmLogin extends javax.swing.JFrame {
         
         try {
             String usuario = txt_usuario.getText();
-            String contraseña = String.valueOf(txt_contraseña.getPassword());
+            String contra_usu = String.valueOf(txt_contraseña.getPassword());
             
-            String sql = "select * from usuario where usuario='"+usuario+"' and contra_usu='"+contraseña+"' ";
+            String sql = "select * from usuario where usuario='"+usuario+"' and contra_usu='"+contra_usu+"' ";
             
             cn=ConexionBD.getConexion();
             ps=cn.prepareStatement(sql);
@@ -203,7 +204,7 @@ public class FrmLogin extends javax.swing.JFrame {
             if(rs.next()){
                 resultado=1;
                 if(resultado==1){
-                    //OBSERVACIÓN: ENLAZAR LA VENTANA DEL MENÚ PRINCIPAL, ESTO ES PARA PROBAR EL FUNCIONAMIENTO
+                    JOptionPane.showMessageDialog(null, "¡BIENVENIDO!");
                     FrmProductos frame = new FrmProductos(rs);
                     frame.setVisible(true);
                     this.dispose();

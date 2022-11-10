@@ -1,34 +1,34 @@
 package modelo.entidad;
 
 public class Registro {
-    private String nombre, apellido, usuario, contraseña;
-    private int telefono;
+    private String nom_usu, ape_usu, usuario, contra_usu;
+    private int telef_usu;
 
     public Registro() {
     }
-    
-    public Registro(String nombre, String apellido, String contraseña, int telefono,String usuario) {
-        this.nombre = nombre;
-        this.apellido = apellido;
+
+    public Registro(String nom_usu, String ape_usu, String usuario, String contra_usu, int telef_usu) {
+        this.nom_usu = nom_usu;
+        this.ape_usu = ape_usu;
         this.usuario = usuario;
-        this.contraseña = contraseña;
-        this.telefono = telefono;
+        this.contra_usu = contra_usu;
+        this.telef_usu = telef_usu;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNom_usu() {
+        return nom_usu;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNom_usu(String nom_usu) {
+        this.nom_usu = nom_usu;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApe_usu() {
+        return ape_usu;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApe_usu(String ape_usu) {
+        this.ape_usu = ape_usu;
     }
 
     public String getUsuario() {
@@ -39,22 +39,20 @@ public class Registro {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContra_usu() {
+        return contra_usu;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContra_usu(String contra_usu) {
+        this.contra_usu = contra_usu;
     }
 
-    public int getTelefono() {
-        return telefono;
+    public int getTelef_usu() {
+        return telef_usu;
     }
 
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
+    public void setTelef_usu(int telef_usu) {
+        this.telef_usu = telef_usu;
     }
     
-    
-
 }

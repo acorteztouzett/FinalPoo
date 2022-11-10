@@ -1,13 +1,14 @@
 package vista;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.dao.RegistroDAO;
 import modelo.entidad.Registro;
 import java.util.ArrayList;
 
 public class FrmRegistro extends javax.swing.JFrame {
-    String nombre, apellido, usuario, contraseña;
-    int telefono;
+    String nom_usu, ape_usu, usuario, contra_usu;
+    int telef_usu;
     RegistroDAO daor;
     
     public FrmRegistro() {
@@ -20,10 +21,10 @@ public class FrmRegistro extends javax.swing.JFrame {
     
     public void capturarDatos(){
         usuario=txt_usuario.getText();
-        nombre=txt_nombre.getText();
-        apellido=txt_apellido.getText();
-        contraseña=txt_contraseña.getText();
-        telefono=Integer.parseInt(txt_telefono.getText());
+        nom_usu=txt_nombre.getText();
+        ape_usu=txt_apellido.getText();
+        contra_usu=txt_contraseña.getText();
+        telef_usu=Integer.parseInt(txt_telefono.getText());
     }
     
     @SuppressWarnings("unchecked")
@@ -45,6 +46,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         btn_volver = new javax.swing.JButton();
+        jcbox_mostrarContra = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -70,6 +72,12 @@ public class FrmRegistro extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Contraseña:");
+
+        txt_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_telefonoKeyTyped(evt);
+            }
+        });
 
         btn_registrarse.setBackground(new java.awt.Color(255, 255, 0));
         btn_registrarse.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -111,6 +119,14 @@ public class FrmRegistro extends javax.swing.JFrame {
             }
         });
 
+        jcbox_mostrarContra.setForeground(new java.awt.Color(255, 255, 255));
+        jcbox_mostrarContra.setText("Mostrar contraseña");
+        jcbox_mostrarContra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbox_mostrarContraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -130,7 +146,9 @@ public class FrmRegistro extends javax.swing.JFrame {
                     .addComponent(txt_nombre)
                     .addComponent(txt_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
                     .addComponent(txt_contraseña))
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jcbox_mostrarContra)
+                .addContainerGap(15, Short.MAX_VALUE))
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(226, 226, 226)
@@ -158,7 +176,8 @@ public class FrmRegistro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txt_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbox_mostrarContra))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -188,7 +207,7 @@ public class FrmRegistro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Algún campo está vacío!!");
         }else{
             capturarDatos();
-            daor.registrarUsuario(new Registro(nombre, apellido, contraseña, telefono, usuario));
+            daor.registrarUsuario(new Registro(nom_usu, ape_usu, usuario, contra_usu, telef_usu));
             limpiar();
             JOptionPane.showMessageDialog(null, "¡BIENVENIDO!\nNueva cuenta registrada correctamente!");
             FrmLogin frame = new FrmLogin();
@@ -202,6 +221,21 @@ public class FrmRegistro extends javax.swing.JFrame {
         frame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_volverActionPerformed
+
+    private void jcbox_mostrarContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbox_mostrarContraActionPerformed
+        if(jcbox_mostrarContra.isSelected()){
+            txt_contraseña.setEchoChar((char)0);
+        }else{
+            txt_contraseña.setEchoChar('*');
+        }
+    }//GEN-LAST:event_jcbox_mostrarContraActionPerformed
+
+    private void txt_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoKeyTyped
+        if(txt_telefono.getText().length()==9){
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+    }//GEN-LAST:event_txt_telefonoKeyTyped
     private void limpiar(){
          txt_nombre.setText("");
          txt_apellido.setText("");
@@ -254,6 +288,7 @@ public class FrmRegistro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JCheckBox jcbox_mostrarContra;
     private javax.swing.JTextField txt_apellido;
     private javax.swing.JPasswordField txt_contraseña;
     private javax.swing.JTextField txt_nombre;
