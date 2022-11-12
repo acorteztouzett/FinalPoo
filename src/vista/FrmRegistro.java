@@ -4,7 +4,6 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.dao.RegistroDAO;
 import modelo.entidad.Registro;
-import java.util.ArrayList;
 
 public class FrmRegistro extends javax.swing.JFrame {
     String nom_usu, ape_usu, usuario, contra_usu;
@@ -14,6 +13,7 @@ public class FrmRegistro extends javax.swing.JFrame {
     public FrmRegistro() {
         initComponents();
         this.setLocationRelativeTo(null);//PARA CENTRAR LA VENTANA AL ABRIR, ES NECESARIO QUE EL SETLAYOUT DEL FRAME ESTE EN ABSOLUTO
+        this.setTitle("Registro de Usuario");
         btn_volver.setToolTipText("Regresa a la ventana anterior");
         btn_registrarse.setToolTipText("Registrarse");
         daor=new RegistroDAO();

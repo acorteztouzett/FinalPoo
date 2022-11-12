@@ -27,6 +27,7 @@ public class FrmMiUsuario extends javax.swing.JFrame {
     public FrmMiUsuario(ResultSet rs) throws SQLException{
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setTitle("Mi Usuario");
         btn_modificarUsu.setToolTipText("Modificar los cambios realizados");
         btn_volver.setToolTipText("Regresa a la ventana anterior");
         daor=new RegistroDAO();

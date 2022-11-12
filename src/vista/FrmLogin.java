@@ -15,6 +15,7 @@ public class FrmLogin extends javax.swing.JFrame {
     public FrmLogin() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setTitle("Inicio de sesión");
         btn_salir.setToolTipText("Salir");
         btn_iniciarSesion.setToolTipText("Inicia Sesión");
         btn_crearCuenta.setToolTipText("Crea una cuenta nueva");

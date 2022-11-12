@@ -29,6 +29,7 @@ public class FrmProductos extends javax.swing.JFrame {
     }
     public FrmProductos(ResultSet rs) throws SQLException{
         initComponents();
+        this.setTitle("Inventario de Productos");
         daoi= new InventarioDAO();
         iniciotxt.setText("Bienvenido "+rs.getString("usuario"));
         this.rs=rs;
@@ -54,11 +55,7 @@ public class FrmProductos extends javax.swing.JFrame {
 
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        btnModificar = new javax.swing.JButton();
-        btnListar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         btnPerfil = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         iniciotxt = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
@@ -75,7 +72,17 @@ public class FrmProductos extends javax.swing.JFrame {
         txtdesc = new javax.swing.JTextField();
         txtcate = new javax.swing.JTextField();
         jCbx_Categoria = new javax.swing.JComboBox<>();
+        btnListar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         txtcate1 = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -86,42 +93,11 @@ public class FrmProductos extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("MyStock+");
 
-        btnModificar.setBackground(new java.awt.Color(0, 102, 0));
-        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icon_modificar.png"))); // NOI18N
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-
-        btnListar.setBackground(new java.awt.Color(0, 102, 0));
-        btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icon_listar.png"))); // NOI18N
-        btnListar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarActionPerformed(evt);
-            }
-        });
-
-        btnEliminar.setBackground(new java.awt.Color(0, 102, 0));
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icon_eliminar.png"))); // NOI18N
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
+        btnPerfil.setBackground(new java.awt.Color(0, 102, 0));
         btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icon_MiPerfil.png"))); // NOI18N
         btnPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPerfilActionPerformed(evt);
-            }
-        });
-
-        btnBuscar.setBackground(new java.awt.Color(0, 102, 0));
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icon_buscar.png"))); // NOI18N
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -132,32 +108,21 @@ public class FrmProductos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addComponent(btnModificar)
-                .addGap(18, 18, 18)
-                .addComponent(btnBuscar)
-                .addGap(18, 18, 18)
-                .addComponent(btnListar)
-                .addGap(18, 18, 18)
-                .addComponent(btnEliminar)
-                .addGap(220, 220, 220)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 682, Short.MAX_VALUE)
                 .addComponent(btnPerfil)
-                .addGap(76, 76, 76))
+                .addGap(22, 22, 22))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnListar, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addGap(11, 11, 11)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -170,7 +135,7 @@ public class FrmProductos extends javax.swing.JFrame {
         iniciotxt.setForeground(new java.awt.Color(204, 0, 255));
         iniciotxt.setText("jLabel1");
         jPanel1.add(iniciotxt);
-        iniciotxt.setBounds(40, 40, 287, 33);
+        iniciotxt.setBounds(30, 30, 287, 33);
 
         btnRegistrar.setBackground(new java.awt.Color(51, 51, 51));
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icon_registrar.png"))); // NOI18N
@@ -180,7 +145,7 @@ public class FrmProductos extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnRegistrar);
-        btnRegistrar.setBounds(752, 98, 66, 66);
+        btnRegistrar.setBounds(710, 70, 66, 66);
 
         tbSalida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -215,21 +180,21 @@ public class FrmProductos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbSalida);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(30, 280, 880, 234);
+        jScrollPane1.setBounds(40, 290, 880, 180);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 255, 255));
         jLabel1.setText("Tienda:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(210, 200, 70, 22);
+        jLabel1.setBounds(130, 200, 70, 22);
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 255, 255));
         jLabel5.setText("Stock:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(220, 240, 56, 22);
+        jLabel5.setBounds(140, 240, 56, 22);
         jPanel1.add(txtst);
-        txtst.setBounds(290, 240, 120, 30);
+        txtst.setBounds(220, 240, 120, 30);
 
         txtTien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,40 +202,113 @@ public class FrmProductos extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtTien);
-        txtTien.setBounds(290, 200, 180, 30);
+        txtTien.setBounds(220, 200, 180, 30);
 
         jlabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jlabel3.setForeground(new java.awt.Color(204, 255, 255));
         jlabel3.setText("Nombre:");
         jPanel1.add(jlabel3);
-        jlabel3.setBounds(200, 80, 77, 22);
+        jlabel3.setBounds(130, 80, 77, 22);
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 255, 255));
         jLabel4.setText("Descripción:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(170, 120, 111, 22);
+        jLabel4.setBounds(90, 120, 111, 22);
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 255, 255));
         jLabel3.setText("Categoría:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(190, 160, 91, 22);
+        jLabel3.setBounds(110, 160, 91, 22);
         jPanel1.add(txtnomi);
-        txtnomi.setBounds(290, 80, 190, 30);
+        txtnomi.setBounds(220, 80, 190, 30);
         jPanel1.add(txtdesc);
-        txtdesc.setBounds(290, 120, 324, 30);
+        txtdesc.setBounds(220, 120, 324, 30);
 
         txtcate.setEnabled(false);
         jPanel1.add(txtcate);
-        txtcate.setBounds(290, 160, 210, 30);
+        txtcate.setBounds(220, 160, 210, 30);
 
         jCbx_Categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abarrotes", "Licores", "Golosinas", "Gaseosas", "Verduras", "Frutas", "Enlatados", "Embutidos", "Farmaceúticos", "Utiles escolares", "Panes" }));
         jPanel1.add(jCbx_Categoria);
-        jCbx_Categoria.setBounds(540, 160, 170, 30);
+        jCbx_Categoria.setBounds(440, 160, 170, 30);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 960, 520));
+        btnListar.setBackground(new java.awt.Color(51, 51, 51));
+        btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icon_listar.png"))); // NOI18N
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnListar);
+        btnListar.setBounds(810, 70, 70, 70);
+
+        btnBuscar.setBackground(new java.awt.Color(51, 51, 51));
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icon_buscar.png"))); // NOI18N
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscar);
+        btnBuscar.setBounds(670, 180, 66, 66);
+
+        btnModificar.setBackground(new java.awt.Color(51, 51, 51));
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icon_modificar.png"))); // NOI18N
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnModificar);
+        btnModificar.setBounds(760, 180, 66, 66);
+
+        btnEliminar.setBackground(new java.awt.Color(51, 51, 51));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icon_eliminar.png"))); // NOI18N
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar);
+        btnEliminar.setBounds(850, 180, 66, 66);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 960, 490));
         getContentPane().add(txtcate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 217, 155, -1));
+
+        jMenu1.setText("Menú");
+
+        jMenuItem1.setText("Inventario de productos");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Filtrar producto");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Imprimir inventario");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem4.setText("Salir");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -374,6 +412,30 @@ public class FrmProductos extends javax.swing.JFrame {
     private void txtTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTienActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTienActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        try {
+            FrmFiltrarProducto frame=new FrmFiltrarProducto(rs);
+            frame.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmProductos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        try {
+            FrmImprimirInventario frame=new FrmImprimirInventario(rs);
+            frame.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmProductos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
     private void limpiar(){
         txtnomi.setText("");
         txtdesc.setText("");
@@ -431,6 +493,12 @@ public class FrmProductos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;

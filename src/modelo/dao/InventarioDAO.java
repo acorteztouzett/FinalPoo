@@ -4,13 +4,17 @@ package modelo.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import modelo.entidad.Inventario;
 import util.ConexionBD;
 
 public class InventarioDAO {
-     Connection cn;
+    Connection cn;
     PreparedStatement ps;
     ResultSet rs;
 
@@ -67,6 +71,28 @@ public ArrayList<Inventario> getProductos(int id_usu){
         } catch (Exception e) {
             System.err.println("ERROR: "+e.getMessage());
         }
+    }
+    
+    
+    public ArrayList<Inventario> getFiltrarProducto(int id_usu, String nom_prod){
+        ArrayList<Inventario> listaInv = new ArrayList<>();
+        try {
+            cn=ConexionBD.getConexion();
+            ps=cn.prepareStatement("select * from inventario where id_usu="+id_usu+" and nom_prod='"+nom_prod+"'");
+            rs=ps.executeQuery();
+            while(rs.next()){
+                Inventario i = new Inventario();
+                i.setCodigo(rs.getInt(1));
+                i.setNom(rs.getString(2));
+                i.setDescripcion(rs.getString(3));
+                i.setCategoria(rs.getString(4));
+                i.setStock(rs.getInt(5));
+                i.setTienda(rs.getString(7));
+                listaInv.add(i);
+            }
+        } catch (Exception e) {
+        }
+        return listaInv;
     }
     
 }
