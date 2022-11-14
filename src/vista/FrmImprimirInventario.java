@@ -14,6 +14,14 @@ import javax.swing.table.DefaultTableCellRenderer;
 import modelo.dao.InventarioDAO;
 import modelo.entidad.Inventario;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
+
+import util.ConexionBD;
+
 public class FrmImprimirInventario extends javax.swing.JFrame implements Printable{
     InventarioDAO daoi;
     Connection cn;
@@ -185,15 +193,35 @@ public class FrmImprimirInventario extends javax.swing.JFrame implements Printab
     }//GEN-LAST:event_btn_volverActionPerformed
 
     private void btn_imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_imprimirActionPerformed
+        Document documento= new Document();
         try {
-            PrinterJob gap = PrinterJob.getPrinterJob();
-            gap.setPrintable(this);
-            boolean top = gap.printDialog();
-            if(top){
-                gap.print();
+            String ruta=System.getProperty("user.home");
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta+"/Downloads/Reporte.pdf"));
+            documento.open();
+            PdfPTable tabla= new PdfPTable(5);
+            tabla.addCell("Nombre del producto");
+            tabla.addCell("Descripción del producto");
+            tabla.addCell("Categoria");
+            tabla.addCell("Stock");
+            tabla.addCell("Tienda");
+            cn=ConexionBD.getConexion();
+            String sql= "Select * from inventario where id_usu="+rs.getInt("id_usu");
+            ps=cn.prepareStatement(sql);
+            ResultSet rs_prod=ps.executeQuery();
+            if(rs_prod.next()){
+                do{
+                    tabla.addCell(rs_prod.getString("nom_prod"));
+                    tabla.addCell(rs_prod.getString("descripcion"));
+                    tabla.addCell(rs_prod.getString("categoria"));
+                    tabla.addCell(rs_prod.getString("stock"));
+                    tabla.addCell(rs_prod.getString("tienda"));
+                }while(rs_prod.next());{
+                    documento.add(tabla);
+                }
             }
-        } catch (PrinterException pex) {
-            JOptionPane.showMessageDialog(null, "ERROR DE PROGRAMA","Error\n"+pex,JOptionPane.INFORMATION_MESSAGE);
+            documento.close();
+        } catch (Exception e) {
+            System.err.println("ERROR: "+e.getMessage());
         }
     }//GEN-LAST:event_btn_imprimirActionPerformed
 
