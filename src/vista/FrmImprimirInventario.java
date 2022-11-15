@@ -1,4 +1,5 @@
 package vista;
+import com.itextpdf.text.Chunk;
 import java.awt.*;
 import java.awt.print.*;
 import java.util.logging.Level;
@@ -16,6 +17,9 @@ import modelo.entidad.Inventario;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
@@ -197,7 +201,20 @@ public class FrmImprimirInventario extends javax.swing.JFrame implements Printab
         try {
             String ruta=System.getProperty("user.home");
             PdfWriter.getInstance(documento, new FileOutputStream(ruta+"/Downloads/Reporte.pdf"));
+            Paragraph titulo= new Paragraph();
+            titulo.setAlignment(Paragraph.ALIGN_CENTER);
+            
+            Paragraph subtitulo= new Paragraph();
+            subtitulo.setAlignment(Paragraph.ALIGN_CENTER);
+            titulo.setFont(FontFactory.getFont("Arial",24,Font.BOLD));
+            subtitulo.setFont(FontFactory.getFont("Arial",24,Font.BOLD));
+            titulo.add("Reporte de inventario \n");
+            subtitulo.add(rs.getString("nom_usu")+" "+rs.getString("ape_usu")+"\n");
             documento.open();
+            documento.add(titulo);
+            documento.add(new Paragraph(" "));
+            documento.add(subtitulo);
+            documento.add(new Paragraph(" "));
             PdfPTable tabla= new PdfPTable(5);
             tabla.addCell("Nombre del producto");
             tabla.addCell("Descripción del producto");
@@ -219,6 +236,11 @@ public class FrmImprimirInventario extends javax.swing.JFrame implements Printab
                     documento.add(tabla);
                 }
             }
+            Image footer= Image.getInstance("src/iconos/MyStockLogo.png");
+            footer.scaleToFit(650,1000);
+            footer.setAlignment(Chunk.ALIGN_CENTER);
+            footer.setAbsolutePosition(CENTER_ALIGNMENT,BOTTOM_ALIGNMENT);
+            documento.add(footer);
             documento.close();
         } catch (Exception e) {
             System.err.println("ERROR: "+e.getMessage());
