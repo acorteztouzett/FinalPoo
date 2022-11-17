@@ -242,6 +242,8 @@ public class FrmImprimirInventario extends javax.swing.JFrame implements Printab
             footer.setAbsolutePosition(CENTER_ALIGNMENT,BOTTOM_ALIGNMENT);
             documento.add(footer);
             documento.close();
+            JOptionPane.showMessageDialog(null, "Listo, revisa tu carpeta DESCARGAS!!");
+            
         } catch (Exception e) {
             System.err.println("ERROR: "+e.getMessage());
         }
