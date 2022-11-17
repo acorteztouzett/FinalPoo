@@ -7,8 +7,8 @@ public class ConexionBD {
         Connection cn=null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url="jdbc:mysql://containers-us-west-48.railway.app:6994/railway";
-            cn=DriverManager.getConnection(url,"root","dZ3y4E0OKHK17KJlRZ7X");
+            String url="jdbc:mysql://remotemysql.com/kSWJ1SMJwX";
+            cn=DriverManager.getConnection(url,"kSWJ1SMJwX","2HblF4zbnB");
             System.out.print("Conexión con exito!!!");
         }catch(Exception e){
             System.err.println("ERROR en la conexión : "+e.getMessage());
