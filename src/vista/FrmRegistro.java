@@ -198,12 +198,8 @@ public class FrmRegistro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarseActionPerformed
-        String nom = txt_nombre.getText();
-        String ape = txt_apellido.getText();
-        String usu = txt_usuario.getText();
-        String contra = txt_contraseña.getText();
         
-        if(nom.isEmpty()|ape.isEmpty()|usu.isEmpty()|contra.isEmpty()){
+        if(txt_nombre.getText().isEmpty()|txt_apellido.getText().isEmpty()|txt_usuario.getText().isEmpty()|txt_contraseña.getText().isEmpty()|txt_telefono.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Algún campo está vacío!!");
         }else{
             capturarDatos();

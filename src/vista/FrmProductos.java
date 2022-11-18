@@ -40,6 +40,8 @@ public class FrmProductos extends javax.swing.JFrame {
         btnBuscar.setToolTipText("Buscar producto");
         btnListar.setToolTipText("Listar todos los productos");
         btnEliminar.setToolTipText("Eliminar producto");
+        FrmLogin framelogin = new FrmLogin();
+        framelogin.dispose();
         
         for (int i = 0; i < 5; i++) {
             DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
@@ -70,7 +72,6 @@ public class FrmProductos extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtnomi = new javax.swing.JTextField();
         txtdesc = new javax.swing.JTextField();
-        txtcate = new javax.swing.JTextField();
         jCbx_Categoria = new javax.swing.JComboBox<>();
         btnListar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
@@ -226,13 +227,9 @@ public class FrmProductos extends javax.swing.JFrame {
         jPanel1.add(txtdesc);
         txtdesc.setBounds(220, 120, 324, 30);
 
-        txtcate.setEnabled(false);
-        jPanel1.add(txtcate);
-        txtcate.setBounds(220, 160, 210, 30);
-
         jCbx_Categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abarrotes", "Licores", "Golosinas", "Gaseosas", "Verduras", "Frutas", "Enlatados", "Embutidos", "Farmaceúticos", "Utiles escolares", "Panes" }));
         jPanel1.add(jCbx_Categoria);
-        jCbx_Categoria.setBounds(440, 160, 170, 30);
+        jCbx_Categoria.setBounds(220, 160, 170, 30);
 
         btnListar.setBackground(new java.awt.Color(51, 51, 51));
         btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icon_listar.png"))); // NOI18N
@@ -361,16 +358,11 @@ public class FrmProductos extends javax.swing.JFrame {
         }
     }
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
         try {
-            String nombre=txtnomi.getText();
-            cn=ConexionBD.getConexion();
-            String sql ="delete from inventario where id_usu="+rs.getInt("id_usu")+" and nom_prod='"+nombre+"'";
-            ps=cn.prepareStatement(sql);
-            ps.execute();
-            ps.close();
+            nom=txtnomi.getText();
+            daoi.eliminarProducto(rs.getInt("id_usu"), nom);
+            JOptionPane.showMessageDialog(null, "Eliminado correctamente!!!");
             limpiar();
-            JOptionPane.showMessageDialog(null, "Producto eliminado correctamente.\nListar para actualizar inventario.");
         } catch (SQLException ex) {
             Logger.getLogger(FrmProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -397,7 +389,7 @@ public class FrmProductos extends javax.swing.JFrame {
             if(rs.next()){
                 txtnomi.setText(rs.getString("nom_prod"));
                 txtdesc.setText(rs.getString("descripcion"));
-                txtcate.setText(rs.getString("categoria"));
+                jCbx_Categoria.setSelectedItem(rs.getString("categoria"));
                 txtst.setText(rs.getString("stock"));
                 txtTien.setText(rs.getString("tienda"));
                 
@@ -440,7 +432,7 @@ public class FrmProductos extends javax.swing.JFrame {
         txtnomi.setText("");
         txtdesc.setText("");
         txtTien.setText("");
-        txtcate.setText("");
+        jCbx_Categoria.setSelectedIndex(0);
         txtst.setText("");
     }
     /**
@@ -505,7 +497,6 @@ public class FrmProductos extends javax.swing.JFrame {
     private javax.swing.JLabel jlabel3;
     private javax.swing.JTable tbSalida;
     private javax.swing.JTextField txtTien;
-    private javax.swing.JTextField txtcate;
     private javax.swing.JTextField txtcate1;
     private javax.swing.JTextField txtdesc;
     private javax.swing.JTextField txtnomi;

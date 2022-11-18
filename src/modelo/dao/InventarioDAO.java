@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.entidad.Inventario;
 import util.ConexionBD;
+import vista.FrmProductos;
 
 public class InventarioDAO {
     Connection cn;
@@ -78,9 +79,9 @@ public ArrayList<Inventario> getProductos(int id_usu){
         ArrayList<Inventario> listaInv = new ArrayList<>();
         try {
             cn=ConexionBD.getConexion();
-            ps=cn.prepareStatement("select * from inventario where id_usu="+id_usu+" and nom_prod='"+nom_prod+"'");
+            ps=cn.prepareStatement("select * from inventario where id_usu="+id_usu+" and nom_prod = '"+nom_prod+"'");
             rs=ps.executeQuery();
-            while(rs.next()){
+            if(rs.next()){
                 Inventario i = new Inventario();
                 i.setCodigo(rs.getInt(1));
                 i.setNom(rs.getString(2));
@@ -89,10 +90,39 @@ public ArrayList<Inventario> getProductos(int id_usu){
                 i.setStock(rs.getInt(5));
                 i.setTienda(rs.getString(7));
                 listaInv.add(i);
+            }else{
+                JOptionPane.showMessageDialog(null, "Producto no encontrado!");
             }
         } catch (Exception e) {
         }
         return listaInv;
+    }
+    
+    public void eliminarProducto(int id_usu, String nombre){
+        try {
+            cn=ConexionBD.getConexion();
+            String sql ="delete from inventario where id_usu="+id_usu+" and nom_prod='"+nombre+"'";
+            ps=cn.prepareStatement(sql);
+            ps.execute();
+            ps.close();
+            cn.close();
+        } catch (Exception e) {
+            System.err.println("ERROR: "+e.getMessage());
+        }
+    }
+    
+    public void buscarProducto(FrmProductos pro,int id_usu, String nombre){
+        try {
+            cn=ConexionBD.getConexion();
+            String sql ="select from inventario where id_usu="+id_usu+" and nom_prod='"+nombre+"'";
+            ps=cn.prepareStatement(sql);
+            rs=ps.executeQuery();
+
+            ps.close();
+            cn.close();
+        } catch (Exception e) {
+            System.err.println("ERROR: "+e.getMessage());
+        }
     }
     
 }

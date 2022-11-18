@@ -298,26 +298,6 @@ public class FrmMiUsuario extends javax.swing.JFrame {
          txt_nombre.requestFocus();
     }
     
-    /*public void buscarUsuario(){
-        try {
-            cn=ConexionBD.getConexion();
-            String sql ="update * from usuario where id_usu="+rs.getInt("id_usu");
-            ps=cn.prepareStatement(sql);
-            rs=ps.executeQuery();
-            
-            if(rs.next()){
-                txt_usuario.setText(rs.getString("id_usu"));
-                txt_nombre.setText(rs.getString("nom_usu"));
-                txt_apellido.setText(rs.getString("ape_usu"));
-                txt_contraseña.setText(rs.getString("contra_usu"));
-                txt_telefono.setText(rs.getString("telef_usu"));
-            }else{
-                JOptionPane.showMessageDialog(null, "Usuario inválido!!!\nInténtelo de nuevo.");
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }*/
     
     /**
      * @param args the command line arguments

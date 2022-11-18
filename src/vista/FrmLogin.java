@@ -1,16 +1,11 @@
 package vista;
 
 import javax.swing.JOptionPane;
-import util.ConexionBD;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import modelo.dao.RegistroDAO;
 
 public class FrmLogin extends javax.swing.JFrame {
 
-    Connection cn;
-    PreparedStatement ps;
-    ResultSet rs;
+    RegistroDAO daor;
     
     public FrmLogin() {
         initComponents();
@@ -19,6 +14,7 @@ public class FrmLogin extends javax.swing.JFrame {
         btn_salir.setToolTipText("Salir");
         btn_iniciarSesion.setToolTipText("Inicia Sesión");
         btn_crearCuenta.setToolTipText("Crea una cuenta nueva");
+        daor= new RegistroDAO();
     }
 
     @SuppressWarnings("unchecked")
@@ -171,7 +167,9 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_salirActionPerformed
 
     private void btn_iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarSesionActionPerformed
-        validaAcceso();
+        String usuario = txt_usuario.getText();
+        String contra_usu = String.valueOf(txt_contraseña.getPassword());
+        daor.validaAcceso(usuario,contra_usu);
     }//GEN-LAST:event_btn_iniciarSesionActionPerformed
 
     private void btn_crearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearCuentaActionPerformed
@@ -189,34 +187,6 @@ public class FrmLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jcbox_mostrarContraActionPerformed
 
-    public void validaAcceso(){
-        int resultado=0;
-        
-        try {
-            String usuario = txt_usuario.getText();
-            String contra_usu = String.valueOf(txt_contraseña.getPassword());
-            
-            String sql = "select * from usuario where usuario='"+usuario+"' and contra_usu='"+contra_usu+"' ";
-            
-            cn=ConexionBD.getConexion();
-            ps=cn.prepareStatement(sql);
-            rs=ps.executeQuery();
-            
-            if(rs.next()){
-                resultado=1;
-                if(resultado==1){
-                    JOptionPane.showMessageDialog(null, "¡BIENVENIDO!");
-                    FrmProductos frame = new FrmProductos(rs);
-                    frame.setVisible(true);
-                    this.dispose();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Error en el acceso!\nVuelve a intentarlo");
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Error en el acceso: "+e.getMessage());
-        }
-    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

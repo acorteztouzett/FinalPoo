@@ -14,8 +14,6 @@ import modelo.dao.InventarioDAO;
 import modelo.entidad.Inventario;
 
 public class FrmFiltrarProducto extends javax.swing.JFrame {
-    String nom, descripcion, categoria, tienda;
-    int codigo,stock;
     Connection cn;
     PreparedStatement ps;
     ResultSet rs;

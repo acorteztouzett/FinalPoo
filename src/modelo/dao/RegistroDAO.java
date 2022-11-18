@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Random;
+import javax.swing.JOptionPane;
+import vista.FrmLogin;
+import vista.FrmProductos;
 
 public class RegistroDAO {
     Connection cn;
@@ -30,6 +33,28 @@ public class RegistroDAO {
             System.err.println("ERROR: "+e.getMessage());
         }
     }
+    
+    public void validaAcceso(String usuario, String contra_usu){
+        try {
+            String sql = "select * from usuario where usuario='"+usuario+"' and contra_usu='"+contra_usu+"' ";
+            cn=ConexionBD.getConexion();
+            ps=cn.prepareStatement(sql);
+            rs=ps.executeQuery();
+            
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "¡BIENVENIDO!");
+                FrmProductos frame = new FrmProductos(rs);
+                frame.setVisible(true);
+                FrmLogin framelogin = new FrmLogin();
+                framelogin.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Error en el acceso!\nVuelve a intentarlo");
+                }
+        } catch (Exception e) {
+            System.err.println("Error en el acceso: "+e.getMessage());
+        }
+    }
+    
     
     public void modificarUsuario(Registro u,int id_usu){
         try {
